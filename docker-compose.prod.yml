@@ -1,0 +1,22 @@
+# docker-compose.prod.yml (production)
+version: '3.8'
+services:
+  app:
+    environment:
+      NODE_ENV: production
+      LOG_LEVEL: error
+
+      JWT_SECRET_FILE: /run/secrets/jwt_secret
+      DB_PASSWORD_FILE: /run/secrets/db_password
+
+    secrets:
+      - jwt_secret
+      - db_password
+
+    restart: unless-stopped
+
+secrets:
+  jwt_secret:
+    file: ./secrets/jwt_secret.txt
+  db_password:
+    external: true  # Managed externally

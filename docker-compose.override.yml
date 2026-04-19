@@ -1,0 +1,9 @@
+# docker-compose.override.yml (development - auto-loaded)
+version: '3.8'
+services:
+  app:
+    environment:
+      NODE_ENV: development
+      LOG_LEVEL: debug
+    volumes:
+      - ./src:/app/src  # Live reload
